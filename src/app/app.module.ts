@@ -13,8 +13,8 @@ import {reducer} from "./todo/reducers/todos.reducer";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    StoreModule.forRoot({}),
 
-    StoreModule.forFeature('todos', reducer)
   ],
   providers: [],
   bootstrap: [AppComponent]

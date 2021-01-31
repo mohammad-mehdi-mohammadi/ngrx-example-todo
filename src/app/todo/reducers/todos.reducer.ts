@@ -7,22 +7,24 @@ export interface TodoState {
   data: Todo[];
 }
 
-export const initialState: TodoState = {
+export const initialState = {
   data: [],
 };
 
-export function reducer(state: TodoState = initialState, action: actions.TodoActions) {
+export function reducer(state = initialState, action: actions.TodoActions) {
   switch (action.type) {
     case actions.ADD_TODO: {
+
       const data = [...state.data, action.payload];
+
       return { ...state, data };
     }
 
     case actions.REMOVE_TODO: {
-      const data = state.data.filter(
-        todo => todo.label !== action.payload.label
-      );
-      return { ...state, data };
+      // const data = state.data.filter(
+      //   todo => todo.label !== action.payload.label
+      // );
+      // return { ...state, data };
     }
   }
 

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "@ngrx/store";
 import {Observable} from "rxjs";
 import {Todo} from "./models/todo.model";
-import {AppState} from "../app.state";
+// import {AppState} from "../app.state";
 import * as actions from "./actions/todo.actions";
 
 @Component({
@@ -11,10 +11,10 @@ import * as actions from "./actions/todo.actions";
   styleUrls: ['./todo.component.sass']
 })
 export class TodoComponent implements OnInit {
-  products: Observable<Todo[]>;
+  todos$: Observable<Todo[]>;
 
   constructor(private store: Store<{ todos: Todo[] }>) {
-    this.products = this.store.select('todos')
+    this.todos$ = this.store.select('todos')
 
   }
 
@@ -33,10 +33,14 @@ export class TodoComponent implements OnInit {
 
   ngOnInit(): void {
     // this.products = this.store.select('todos')
-    console.log(this.products)
+
     this.store.dispatch(
       new actions.AddTodo({label: 'Eat pizza', complete: false})
     );
+    this.todos$ = this.store.select('todos')
+    this.todos$.subscribe(value => {
+      console.log(value)
+    })
   }
 
 }

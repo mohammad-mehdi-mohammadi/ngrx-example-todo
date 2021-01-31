@@ -1,7 +1,5 @@
 
 
-<div *ngFor="let product of (products | async)">
-  <div *ngFor="let x of product.data">
-    {{x | json}}
-  </div>
-</div>
+<li *ngFor="let todo of (todos$ | async)?.data">
+  {{ todo | json }}
+</li>
