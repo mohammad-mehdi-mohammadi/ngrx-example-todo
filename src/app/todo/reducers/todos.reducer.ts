@@ -1,7 +1,7 @@
 import {createReducer, on} from '@ngrx/store';
 
 import {Todo} from "../models/todo.model";
-import {errorItem, loadItems} from "../actions/todo.actions";
+import {addNewItem, errorItem, loadItems} from "../actions/todo.actions";
 
 // export const initialState = ;
 //
@@ -22,11 +22,15 @@ export interface State {
 }
 
 export const initialState: State = {
-  toDo: { items: [], error: '' }
+  toDo: {items: [], error: ''}
 };
 
 export const ToDoReducer = createReducer(
   initialState,
+  on(addNewItem, (state, action) => ({
+    ...state,
+    items: [...state.toDo.items, {name: action.item}]
+  })),
   on(loadItems, (state, action) => ({
     ...state,
     items: action.items

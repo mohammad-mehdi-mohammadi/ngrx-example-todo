@@ -8,11 +8,14 @@ export const loadItems = createAction(
   props<{ items: Todo[] }>()
 );
 
-export const addItem = createAction(
-  '[to-do] add item',
-  props<{ name: string }>()
+// export const addItem = createAction(
+//   '[to-do] add item',
+//   props<{ item: Todo }>()
+// );
+export const addNewItem = createAction(
+  '[to-new-do] add item',
+  props<{ item: Todo }>()
 );
-
 export const deleteItem = createAction(
   '[to-do] delete item',
   props<{ item: Todo }>()

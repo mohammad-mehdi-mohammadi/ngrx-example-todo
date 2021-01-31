@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Todo} from "./models/todo.model";
 // import {AppState} from "../app.state";
 import * as actions from "./actions/todo.actions";
-import {addItem, deleteItem, getItems} from './actions/todo.actions';
+import {addNewItem, deleteItem, getItems} from './actions/todo.actions';
 import {FormControl, FormGroup} from "@angular/forms";
 import {selectError, selectItems} from "./reducers/todos.reducer";
 
@@ -30,7 +30,7 @@ export class TodoComponent implements OnInit {
 
   onSubmit() {
     this.store.dispatch(
-      addItem({name: this.toDoForm.controls.name.value})
+      addNewItem({item: this.toDoForm.controls.name.value})
     );
     this.toDoForm.controls.name.reset();
   }

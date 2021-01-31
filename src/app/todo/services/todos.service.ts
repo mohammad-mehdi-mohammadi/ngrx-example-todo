@@ -16,19 +16,19 @@ export class TodosService {
     return items;
   }
 
-  addItem(addItem: string) {
-    const itemsStored = window.localStorage.getItem('items');
-    let items = [];
-    if (itemsStored !== null) {
-      items = JSON.parse(itemsStored);
-    }
-    const item: Todo = {
-      id: items.length + 1,
-      name: addItem
-    };
-    items.push(item);
-    window.localStorage.setItem('items', JSON.stringify(items));
-  }
+  // addItem(addItem: string) {
+  //   const itemsStored = window.localStorage.getItem('items');
+  //   let items = [];
+  //   if (itemsStored !== null) {
+  //     items = JSON.parse(itemsStored);
+  //   }
+  //   const item: Todo = {
+  //     id: items.length + 1,
+  //     name: addItem
+  //   };
+  //   items.push(item);
+  //   window.localStorage.setItem('items', JSON.stringify(items));
+  // }
 
   deleteItem(deleteItem: any) {
     const items = JSON.parse(<string>window.localStorage.getItem('items'));
