@@ -7,7 +7,7 @@ export interface TodoState {
   data: Todo[];
 }
 
-export const initialState = {
+export const initialState: TodoState = {
   data: [],
 };
 
