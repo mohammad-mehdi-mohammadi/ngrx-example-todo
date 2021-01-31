@@ -1,19 +1,28 @@
+import {createAction, props} from '@ngrx/store';
+import {Todo} from "../models/todo.model";
 
-import { Todo } from '../models/todo.model';
-import { Action } from '@ngrx/store';
+export const getItems = createAction('[to-do] get items');
 
-export const ADD_TODO = '[Todo] Add Todo';
-export const REMOVE_TODO = '[Todo] Remove Todo';
+export const loadItems = createAction(
+  '[to-do] load items',
+  props<{ items: Todo[] }>()
+);
 
-export class AddTodo implements Action {
-  readonly type = ADD_TODO;
-  constructor(public payload: Todo) {}
-}
+export const addItem = createAction(
+  '[to-do] add item',
+  props<{ name: string }>()
+);
 
-export class RemoveTodo implements Action {
-  readonly type = REMOVE_TODO;
-  constructor(public payload: Todo) {}
-}
+export const deleteItem = createAction(
+  '[to-do] delete item',
+  props<{ item: Todo }>()
+);
 
-// exporting a custom type
-export type TodoActions = AddTodo | RemoveTodo;
+export const errorItem = createAction(
+  '[to-do] error item',
+  props<{ message: string }>()
+);
+/*
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://github.com/ngrx/platform
+*/

@@ -1,13 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Todo} from "../models/todo.model";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TodosService {
 
-  constructor() { }
+  constructor() {}
 
-  getTodos() {
-    const todos = [{id: 1, title: "Learn ngrx/store", completed: false}, {id: 2, title: "Learn ngrx/effects", completed: false}, {title:"My another task", completed: true}]
-    return Observable.timer(1000).mapTo(todos)
+  getItems() {
+    let items = JSON.parse(<string>window.localStorage.getItem('items'));
+    if (items === null) {
+      items = [];
+    }
+    return items;
+  }
+
+  addItem(addItem: string) {
+    const itemsStored = window.localStorage.getItem('items');
+    let items = [];
+    if (itemsStored !== null) {
+      items = JSON.parse(itemsStored);
+    }
+    const item: Todo = {
+      id: items.length + 1,
+      name: addItem
+    };
+    items.push(item);
+    window.localStorage.setItem('items', JSON.stringify(items));
+  }
+
+  deleteItem(deleteItem: any) {
+    const items = JSON.parse(<string>window.localStorage.getItem('items'));
+    console.log(items);
+    console.log(deleteItem);
+    const saved = items.filter((item: any) => {
+      return item.id !== deleteItem.id;
+    });
+    window.localStorage.setItem('items', JSON.stringify(saved));
   }
 }

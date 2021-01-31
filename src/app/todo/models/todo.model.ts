@@ -1,6 +1,6 @@
 export interface Todo {
-  label: string;
-  complete: false;
+  name: string;
+  id: number;
 }
 // export default interface Post {
 //   id: number;

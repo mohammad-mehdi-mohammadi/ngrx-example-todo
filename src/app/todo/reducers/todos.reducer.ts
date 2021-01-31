@@ -1,32 +1,46 @@
-import {Todo} from './../models/todo.model';
-import * as actions from "../actions/todo.actions";
+import {createReducer, on} from '@ngrx/store';
+
+import {Todo} from "../models/todo.model";
+import {errorItem, loadItems} from "../actions/todo.actions";
+
+// export const initialState = ;
+//
+// const _counterReducer = createReducer(
+//   initialState,
+//   on(increment, (state) => state + 1),
+//   on(decrement, (state) => state - 1),
+//   on(reset, (state) => 0)
+// );
+//
+// export function counterReducer(state: any, action: any) {
+//   return _counterReducer(state, action);
+// }
 
 
-
-export interface TodoState {
-  data: Todo[];
+export interface State {
+  toDo: { items: Todo[]; error: string };
 }
 
-export const initialState: TodoState = {
-  data: [],
+export const initialState: State = {
+  toDo: { items: [], error: '' }
 };
 
-export function reducer(state = initialState, action: actions.TodoActions) {
-  switch (action.type) {
-    case actions.ADD_TODO: {
+export const ToDoReducer = createReducer(
+  initialState,
+  on(loadItems, (state, action) => ({
+    ...state,
+    items: action.items
+  })),
+  on(errorItem, (state, action) => ({
+    ...state,
+    error: action.message
+  }))
+);
 
-      const data = [...state.data, action.payload];
+export const selectItems = (state: State) => state.toDo.items;
 
-      return { ...state, data };
-    }
-
-    case actions.REMOVE_TODO: {
-      // const data = state.data.filter(
-      //   todo => todo.label !== action.payload.label
-      // );
-      // return { ...state, data };
-    }
-  }
-
-  return state;
-}
+export const selectError = (state: State) => state.toDo.error;
+/*
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://github.com/ngrx/platform
+*/

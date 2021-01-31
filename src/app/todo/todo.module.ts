@@ -3,7 +3,10 @@ import {CommonModule} from '@angular/common';
 import {TodoRoutingModule} from './todo-routing.module';
 import {TodoComponent} from './todo.component';
 import {StoreModule} from "@ngrx/store";
-import {reducer} from "./reducers/todos.reducer";
+import {ToDoReducer} from "./reducers/todos.reducer";
+import {EffectsModule} from "@ngrx/effects";
+import {ToDoEffect} from "./effects/todos.effect";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -11,7 +14,9 @@ import {reducer} from "./reducers/todos.reducer";
   imports: [
     CommonModule,
     TodoRoutingModule,
-    StoreModule.forFeature('todos', reducer)
+    StoreModule.forRoot({toDo: ToDoReducer}),
+    EffectsModule.forRoot([ToDoEffect]),
+    ReactiveFormsModule,
   ],
   providers: [],
   exports: []
