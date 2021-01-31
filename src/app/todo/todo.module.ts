@@ -5,7 +5,6 @@ import {TodoComponent} from './todo.component';
 import {StoreModule} from "@ngrx/store";
 import {reducer} from "./reducers/todos.reducer";
 
-
 @NgModule({
   declarations: [TodoComponent],
   imports: [

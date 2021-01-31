@@ -1,6 +1,6 @@
 export interface Todo {
   label: string;
-  complete: false;
+  complete: boolean;
 }
 // export default interface Post {
 //   id: number;

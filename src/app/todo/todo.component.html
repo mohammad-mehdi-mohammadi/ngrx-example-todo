@@ -1,5 +1,2 @@
 
-
-<li *ngFor="let todo of (todos$ | async)?.data">
-  {{ todo | json }}
-</li>
+<pre>{{ todos$ | async | json }}</pre>
