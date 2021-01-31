@@ -1,32 +1,21 @@
-import {Todo} from './../models/todo.model';
-import * as actions from "../actions/todo.actions";
+import { createReducer, on } from '@ngrx/store';
+import { increment, decrement, reset } from './../actions/todo.actions';
 
+export const initialState = 0;
 
+const _counterReducer = createReducer(
+  initialState,
+  on(increment, (state) => state + 1),
+  on(decrement, (state) => state - 1),
+  on(reset, (state) => 0)
+);
 
-export interface TodoState {
-  data: Todo[];
+export function counterReducer(state: any, action: any) {
+  return _counterReducer(state, action);
 }
 
-export const initialState: TodoState = {
-  data: [],
-};
 
-export function reducer(state = initialState, action: actions.TodoActions) {
-  switch (action.type) {
-    case actions.ADD_TODO: {
-
-      const data = [...state.data, action.payload];
-
-      return { ...state, data };
-    }
-
-    case actions.REMOVE_TODO: {
-      // const data = state.data.filter(
-      //   todo => todo.label !== action.payload.label
-      // );
-      // return { ...state, data };
-    }
-  }
-
-  return state;
-}
+/*
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://github.com/ngrx/platform
+*/

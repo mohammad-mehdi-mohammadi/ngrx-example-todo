@@ -1,19 +1,11 @@
+import { createAction } from '@ngrx/store';
 
-import { Todo } from '../models/todo.model';
-import { Action } from '@ngrx/store';
+export const increment = createAction('[Counter Component] Increment');
+export const decrement = createAction('[Counter Component] Decrement');
+export const reset = createAction('[Counter Component] Reset');
 
-export const ADD_TODO = '[Todo] Add Todo';
-export const REMOVE_TODO = '[Todo] Remove Todo';
 
-export class AddTodo implements Action {
-  readonly type = ADD_TODO;
-  constructor(public payload: Todo) {}
-}
-
-export class RemoveTodo implements Action {
-  readonly type = REMOVE_TODO;
-  constructor(public payload: Todo) {}
-}
-
-// exporting a custom type
-export type TodoActions = AddTodo | RemoveTodo;
+/*
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://github.com/ngrx/platform
+*/

@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {Todo} from "./models/todo.model";
 // import {AppState} from "../app.state";
 import * as actions from "./actions/todo.actions";
+import {decrement, increment, reset } from './actions/todo.actions';
 
 @Component({
   selector: 'app-todo',
@@ -11,36 +12,26 @@ import * as actions from "./actions/todo.actions";
   styleUrls: ['./todo.component.sass']
 })
 export class TodoComponent implements OnInit {
-  todos$: Observable<Todo[]>;
+  count$: Observable<number>;
 
-  constructor(private store: Store<{ todos: Todo[] }>) {
-    this.todos$ = this.store.select('todos')
-
+  constructor(private store: Store<{ count: number }>) {
+    this.count$ = store.select('count');
   }
 
-  addProduct(name: any, price: any) {
-    console.log(name, price)
-    // this.store.dispatch({
-    //   type: 'ADD_PRODUCT',
-    //   payload: <Post> {
-    //     id: 1,
-    //     name: name
-    //   }
-    // });
+  increment() {
+    this.store.dispatch(increment());
+  }
 
+  decrement() {
+    this.store.dispatch(decrement());
+  }
 
+  reset() {
+    this.store.dispatch(reset());
   }
 
   ngOnInit(): void {
-    // this.products = this.store.select('todos')
 
-    this.store.dispatch(
-      new actions.AddTodo({label: 'Eat pizza', complete: false})
-    );
-    this.todos$ = this.store.select('todos')
-    this.todos$.subscribe(value => {
-      console.log(value)
-    })
   }
 
 }

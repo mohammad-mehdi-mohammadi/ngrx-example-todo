@@ -3,8 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {StoreModule, StoreRootModule} from "@ngrx/store";
-import {reducer} from "./todo/reducers/todos.reducer";
 
 @NgModule({
   declarations: [
@@ -13,7 +11,6 @@ import {reducer} from "./todo/reducers/todos.reducer";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}),
 
   ],
   providers: [],

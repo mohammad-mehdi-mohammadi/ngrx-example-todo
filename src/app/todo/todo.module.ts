@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TodoRoutingModule} from './todo-routing.module';
 import {TodoComponent} from './todo.component';
 import {StoreModule} from "@ngrx/store";
-import {reducer} from "./reducers/todos.reducer";
+import {counterReducer} from "./reducers/todos.reducer";
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import {reducer} from "./reducers/todos.reducer";
   imports: [
     CommonModule,
     TodoRoutingModule,
-    StoreModule.forFeature('todos', reducer)
+    StoreModule.forRoot({ count: counterReducer })
   ],
   providers: [],
   exports: []
