@@ -31,6 +31,7 @@ export const ToDoReducer = createReducer(
     ...state,
     items: [...state.toDo.items, {name: action.item}]
   })),
+
   on(loadItems, (state, action) => ({
     ...state,
     items: action.items

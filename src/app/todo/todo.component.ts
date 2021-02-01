@@ -18,14 +18,14 @@ export class TodoComponent implements OnInit {
     name: new FormControl('')
   });
   items$: Observable<any>;
-  error$: Observable<any>;
+  // error$: Observable<any>;
 
   constructor(private store: Store<{ toDo: { items: Todo[] } }>) {
-    this.store.dispatch(getItems());
+    // this.store.dispatch(getItems());
     // @ts-ignore
     this.items$ = this.store.pipe(select(selectItems));
     // @ts-ignore
-    this.error$ = this.store.pipe(select(selectError));
+    // this.error$ = this.store.pipe(select(selectError));
   }
 
   onSubmit() {
