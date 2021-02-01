@@ -25,7 +25,3 @@ export const errorItem = createAction(
   '[to-do] error item',
   props<{ message: string }>()
 );
-/*
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at https://github.com/ngrx/platform
-*/
