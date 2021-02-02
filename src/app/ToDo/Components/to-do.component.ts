@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {select, Store} from '@ngrx/store';
+import {Observable, Subscription} from 'rxjs';
+import {map} from 'rxjs/operators';
 import * as ToDoActions from '../todo.action';
 import ToDo from '../todo.model';
 import ToDoState from '../todo.state';
@@ -15,6 +15,8 @@ export class ToDoComponent implements OnInit {
   constructor(private store: Store<{ todos: ToDoState }>) {
     this.todo$ = store.pipe(select('todos'));
   }
+
+  public idx = 0;
 
   ngOnInit() {
     this.ToDoSubscription = this.todo$
@@ -39,10 +41,19 @@ export class ToDoComponent implements OnInit {
   todoError: Error = null;
 
   createToDo() {
-    const todo: ToDo = { Title: this.Title, IsCompleted: this.IsCompleted };
-    this.store.dispatch(ToDoActions.BeginCreateToDoAction({ payload: todo }));
+    this.idx = this.idx + 1;
+    const todo: ToDo = {Title: this.Title, IsCompleted: this.IsCompleted, id: this.idx};
+    this.store.dispatch(ToDoActions.SuccessCreateToDoAction({payload: todo}));
+    // this.store.dispatch(ToDoActions.BeginCreateToDoAction({ payload: todo }));
     this.Title = '';
     this.IsCompleted = false;
+  }
+
+  deleteItem(id) {
+    // const todo: ToDo = {Title: TitleValue, IsCompleted: IsCompletedValue};
+
+    this.store.dispatch(ToDoActions.SuccessDeleteToDoAction({payload: id}));
+
   }
 
   ngOnDestroy() {

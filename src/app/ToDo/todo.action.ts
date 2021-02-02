@@ -1,4 +1,4 @@
-import { createAction, props } from '@ngrx/store';
+import {createAction, props} from '@ngrx/store';
 import ToDo from './todo.model';
 
 export const GetToDoAction = createAction('[ToDo] - Get ToDo');
@@ -19,9 +19,13 @@ export const BeginCreateToDoAction = createAction(
   '[ToDo] - Begin Create ToDo',
   props<{ payload: ToDo }>()
 );
+export const SuccessDeleteToDoAction = createAction(
+  '[ToDo] - Begin Create ToDo',
+  props<{ payload: number }>()
+);
 
 export const SuccessCreateToDoAction = createAction(
-  '[ToDo] - Sucess Create ToDo',
+  '[ToDo] - Delete Create ToDo',
   props<{ payload: ToDo }>()
 );
 
