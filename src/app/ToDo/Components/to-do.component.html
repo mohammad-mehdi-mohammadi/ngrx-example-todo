@@ -7,17 +7,18 @@
     </div>
   </div>
 
-  <div *ngFor="let todo of ToDoList" class="ToDoList">
+  <div *ngFor="let todo of ToDoList; let i = index" class="ToDoList">
     <div class="row">
       <div class="col-md-2">Name:</div>
       <div class="col-md-2 todoItem">{{ todo.Title }}</div>
       <div class="col-md-2">IsCompleted:</div>
       <div class="col-md-2 todoItem">{{ todo.IsCompleted }}</div>
+      <div class="col-md-2 todoItem"><a href="javascript:;" (click)="deleteItem(todo.id)">{{ i }}</a></div>
     </div>
   </div>
 </div>
 
-<hr />
+<hr/>
 
 <div class="container form-group" style="margin: 10px;">
   <h3>Create New Wishlist</h3>
