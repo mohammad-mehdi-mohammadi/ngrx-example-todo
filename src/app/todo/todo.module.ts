@@ -7,7 +7,8 @@ import {ToDoReducer} from "./reducers/todos.reducer";
 import {EffectsModule} from "@ngrx/effects";
 import {ToDoEffect} from "./effects/todos.effect";
 import {ReactiveFormsModule} from "@angular/forms";
-
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {environment} from "../../environments/environment";
 
 @NgModule({
   declarations: [TodoComponent],
@@ -16,6 +17,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     TodoRoutingModule,
     StoreModule.forRoot({toDo: ToDoReducer}),
     EffectsModule.forRoot([ToDoEffect]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+    }),
     ReactiveFormsModule,
   ],
   providers: [],

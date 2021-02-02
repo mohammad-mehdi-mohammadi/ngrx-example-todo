@@ -14,10 +14,14 @@ export const initialState: State = {
 
 export const ToDoReducer = createReducer(
   initialState,
-  on(addNewItem, (state, action) => ({
-    ...state,
-    items: [...state.toDo.items, {name: action.item}]
-  })),
+  // on(addNewItem, (state, action) => ({
+  //   ...state,
+  //   items: state.toDo.items.concat(action.item)
+  //
+  // })),
+  on(addNewItem, (state: State, {item}) => {
+    return {...state, items: [...state.toDo.items, item]}
+  }),
 
   on(loadItems, (state, action) => ({
     ...state,
